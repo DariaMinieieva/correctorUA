@@ -1,6 +1,7 @@
 correctorua
-test
-test1
-correctorUA/__pycache__
-correctorUA/.ipynb_checkpoints
-correctorUA/adverbs.csv
+test.py
+test1.py
+__pycache__
+.ipynb_checkpoints
+adverbs.csv
+lexic1.csv
