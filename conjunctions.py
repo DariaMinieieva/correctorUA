@@ -10,9 +10,9 @@ def check_conjunctions(sentence: str) -> str or None:
     conjunctions = set(['а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'])
     errors = []
     for word in conjunctions:
-        pattern = rf'.*[^,] {word} .*'
+        pattern = rf'^.*[^,] {word}(([^\w].*)|$)'
         if re.fullmatch(pattern, sentence):
-            errors.append(f"Перед {word} повинна стояти кома.")
+            errors.append(f'Перед "{word}" повинна стояти кома.')
     if errors:
         return errors
     return None
