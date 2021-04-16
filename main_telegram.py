@@ -1,7 +1,7 @@
 import telebot
 from main_logic import check_for_mistake
 
-bot = telebot.TeleBot('1747508782:AAHNrc2dXvNPsiFSlh4DbFNr1cbrkHjhx5Y')
+bot = telebot.TeleBot('token')
 
 
 @bot.message_handler(commands=['start'])
