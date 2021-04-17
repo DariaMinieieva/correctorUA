@@ -16,7 +16,7 @@ CorretorUA corrects the following types of mistake
 ## Example of using
 There is no information in this paragraph yet.
 ## Authors
-* [Olya Lyuba](https://github.com/oliuba)
+* [Olha Liuba](https://github.com/oliuba)
 * [Victoriya Roi](https://github.com/VictoriyaRoy)
 * [Daria Minieieva](https://github.com/DariaMinieieva)
 * [Sasha Stasiuk](https://github.com/oleksadobush)
