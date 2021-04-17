@@ -1,8 +1,8 @@
 """
-This module contains fucntions that work
+This module contains functions that work
 directly with a telegram bot
 """
-
+from token import token
 import telebot
 from main_logic import check_for_mistake, check_conjunctions, correct_msg
 from together_hyphen import main_check
@@ -12,17 +12,17 @@ bot = telebot.TeleBot('token')
 
 @bot.message_handler(commands=['start'])
 def handle_command(message):
-    '''
+    """
     Initial message
-    '''
+    """
     bot.reply_to(message, "Привіт! Я бот - українізатор!")
 
 
 @bot.message_handler(func=lambda message: True)
 def handle_all_message(message):
-    '''
+    """
     Send messages to the bot
-    '''
+    """
     special_word(message, message.text)
     mess = message.text
     correct = check_for_mistake(mess)
@@ -44,9 +44,9 @@ def handle_all_message(message):
 
 
 def special_word(message, text):
-    '''
+    """
     Special cases
-    '''
+    """
     if "українізатор" in text:
         bot.reply_to(message, "Це я!")
     if "україна" in text:
