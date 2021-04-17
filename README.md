@@ -14,7 +14,7 @@ CorretorUA corrects the following types of mistake
 * _spelling_ mistakes
 * _punctuation_ mistakes
 
-The mistakes and ukrainian language rules are taken from the following sources:
+## The mistakes and ukrainian language rules are taken from the following sources:
 * http://slovopedia.org.ua/28/53392-0.html
 * http://slovopedia.org.ua/45/53392-0.html
 * https://uk.wikipedia.org/wiki/%D0%92%D1%96%D0%BA%D1%96%D0%BF%D0%B5%D0%B4%D1%96%D1%8F:%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%D1%96%D1%88%D0%B8%D1%85_%D0%BC%D0%BE%D0%B2%D0%BD%D0%B8%D1%85_%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BE%D0%BA
