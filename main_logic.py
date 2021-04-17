@@ -1,15 +1,15 @@
 """
 This is main module with all the logic
-for correctua bot
+for correctUA bot
 """
 
 import re
 
 
 def get_dictionary(path):
-    '''
+    """
     Get dictionary from csv
-    '''
+    """
     with open(path, mode='r') as infile:
         dict_wrong_right = {}
         for line in infile:
@@ -19,10 +19,10 @@ def get_dictionary(path):
 
 
 def correct_msg(messages):
-    '''
+    """
     Correct a message
-    '''
-    path = "correctorUA/lexic_mistakes.csv"
+    """
+    path = "lexic_mistakes.csv"
     data = get_dictionary(path)
     corrected = messages
     for key in data:
@@ -38,10 +38,12 @@ def correct_msg(messages):
 
 
 def check_conjunctions(sentence: str) -> list or None:
-    """Returns the list of messages about a punctuation error
-    with conjunctions if there is one."""
+    """
+    Returns the list of messages about a punctuation error
+    with conjunctions if there is one.
+    """
     sentence = sentence.lower()
-    conjunctions = set(['а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'])
+    conjunctions = {'а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'}
     errors = []
     for word in conjunctions:
         pattern = rf'^.*[^,] {word}(([^\w].*)|$)'
@@ -53,16 +55,16 @@ def check_conjunctions(sentence: str) -> list or None:
 
 
 def check_for_mistake(messages):
-    '''
+    """
     Returns mistakes with corrections
-    '''
+    """
     res = []
-    path = "correctorUA/lexic_mistakes.csv"
+    path = "lexic_mistakes.csv"
     data = get_dictionary(path)
 
     messages = messages.lower()
     for key in data:
-        if (key in messages):
+        if key in messages:
             res.append(f"❌ {key}\n✔️ {data[key]}")
 
     return res
@@ -90,8 +92,10 @@ def write_together(sentence: str) -> list or None:
 
 
 def write_with_hyphen(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes
-    with words that need to be written with a hyphen."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen.
+    """
     sentence = sentence.lower()
     errors = []
     hyphen_prefixes = {'альфа', 'бета', 'дельта', 'казна', 'хтозна', 'бозна'}
@@ -112,8 +116,10 @@ def write_with_hyphen(sentence: str) -> list or None:
 
 
 def main_check(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes 
-    with words that need to be written with a hyphen or together."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen or together.
+    """
     together_errors = write_together(sentence)
     hyphen_errors = write_with_hyphen(sentence)
     if together_errors and hyphen_errors:
