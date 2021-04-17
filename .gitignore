@@ -5,7 +5,7 @@ __pycache__
 .ipynb_checkpoints
 adverbs.csv
 lexic1.csv
-conf
+conf.py
 separately_written.tsv
 adverbs1.csv
 conjunctions.py
