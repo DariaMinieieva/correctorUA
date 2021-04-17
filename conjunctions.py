@@ -3,8 +3,8 @@
 
 import re
 
-def check_conjunctions(sentence: str) -> str or None:
-    """Returns the message about a punctuation error
+def check_conjunctions(sentence: str) -> list or None:
+    """Returns the list of messages about a punctuation error
     with conjunctions if there is one."""
     sentence = sentence.lower()
     conjunctions = set(['а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'])
