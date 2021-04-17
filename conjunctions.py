@@ -10,7 +10,7 @@ def check_conjunctions(sentence: str) -> list or None:
     with conjunctions if there is one.
     """
     sentence = sentence.lower()
-    conjunctions = set(['а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'])
+    conjunctions = {'а', 'але', 'однак', 'проте', 'зате', 'хоч', 'хоча'}
     errors = []
     for word in conjunctions:
         pattern = rf'^.*[^,] {word}(([^\w].*)|$)'
