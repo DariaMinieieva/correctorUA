@@ -23,6 +23,7 @@ def write_together(sentence: str) -> list:
                 rf'(?<=[^\w-]){prefix}[-\s][\w]*(?=[^\w-])', sentence)
             pattern += re.findall(rf'^{prefix}[-\s][\w]*(?=[^\w-])', sentence)
             pattern += re.findall(rf'(?<=[^\w-]){prefix}[-\s][\w]*$', sentence)
+            pattern += re.findall(rf'^{prefix}[-\s][\w]*$', sentence)
             for key in pattern:
                 errors[key] = re.sub(rf'{prefix}.', prefix, key)
     for key in errors:
@@ -47,6 +48,7 @@ def specific_hyphen(sentence: str) -> list:
             rf'^{prefix}[^-][\w]*{sufixes}(?=[^\w-])', sentence)
         pattern += re.findall(
             rf'(?<=[^\w-]){prefix}[^-][\w]*{sufixes}$', sentence)
+        pattern += re.findall(rf'^{prefix}[^-][\w]*{sufixes}$', sentence)
         for key in pattern:
             errors[key] = re.sub(r'по\s?', 'по-', key)
     for key in errors:
@@ -71,6 +73,7 @@ def write_with_hyphen(sentence: str) -> list:
                 rf'(?<=[^\w-]){prefix}[^-][\w]*(?=[^\w-])', sentence)
             pattern += re.findall(rf'^{prefix}[^-][\w]*(?=[^\w-])', sentence)
             pattern += re.findall(rf'(?<=[^\w-]){prefix}[^-][\w]*$', sentence)
+            pattern += re.findall(rf'^{prefix}[^-][\w]*$', sentence)
             for key in pattern:
                 errors[key] = re.sub(r'{prefix}\s?', rf'{prefix}-', key)
 
@@ -80,6 +83,7 @@ def write_with_hyphen(sentence: str) -> list:
             pattern += re.findall(
                 rf'(?<=[^\w-])\w*[^-]{sufix}(?=[^\w-])', sentence)
             pattern += re.findall(rf'(?<=[^\w-])\w*[^-]{sufix}$', sentence)
+            pattern += re.findall(rf'^\w*[^-]{sufix}$', sentence)
             for key in pattern:
                 errors[key] = re.sub(rf'\s?{sufix}', rf'-{sufix}', key)
     for key in errors:
