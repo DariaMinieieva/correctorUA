@@ -15,6 +15,7 @@ CorretorUA corrects the following types of mistake
 * _punctuation_ mistakes
 ## Example of using
 <img width="426" alt="2021-04-17" src="https://user-images.githubusercontent.com/50978411/115115259-191d5780-9f9c-11eb-951f-1c3882855e91.png">
+
 ## Authors
 * [Olha Liuba](https://github.com/oliuba)
 * [Victoriya Roi](https://github.com/VictoriyaRoy)
