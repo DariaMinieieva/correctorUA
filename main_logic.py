@@ -64,8 +64,8 @@ def check_for_mistake(messages):
 
     messages = messages.lower()
     for key in data:
-        pattern1 = rf'[^а-яА-Я]{key}[^а-яА-Я]|[^а-яА-Я]{key}|{key}[^а-яА-Я]'
-        if re.findall(pattern1, messages):
+        pattern = rf'[^а-яА-Я]{key}[^а-яА-Я]|[^а-яА-Я]{key}$|^{key}[^а-яА-Я]|^{key}$'
+        if re.findall(pattern, messages):
             res.append(f"❌ {key}\n✔️ {data[key]}")
 
     return res
