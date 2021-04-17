@@ -4,9 +4,10 @@ directly with a telegram bot
 """
 
 import telebot
-from main_logic import check_for_mistake, check_conjunctions, correct_msg, main_check
+from main_logic import check_for_mistake, check_conjunctions, correct_msg
+from together_hyphen import main_check
 
-bot = telebot.TeleBot('1747508782:AAEtD-HE__4QsDPKDHZuKW207TKZ7gZvkYU')
+bot = telebot.TeleBot('token')
 
 
 @bot.message_handler(commands=['start'])
