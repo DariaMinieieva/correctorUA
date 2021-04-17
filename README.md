@@ -7,12 +7,12 @@ This bot should help:
 * _primary and secondary_ school students - for Ukrainian language lessons
 * _people of other age_ - for improving Ukrainian language skills
 
-When someone in chat makes common language mistake, the bot send message with the correct version.
+When someone in chat makes common language mistakes, the bot offers to fix them.
 
 CorretorUA corrects the following types of mistake
 * _lexical_ mistakes
 * _spelling_ mistakes
-* _punctuation_
+* _punctuation_ mistakes
 ## Example of using
 There is no information in this paragraph yet.
 ## Authors
