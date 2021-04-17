@@ -5,8 +5,9 @@ directly with a telegram bot
 import telebot
 from main_logic import check_for_mistake, check_conjunctions, correct_msg
 from together_hyphen import main_check
+from conf import tok
 
-bot = telebot.TeleBot('token')
+bot = telebot.TeleBot(tok)
 
 
 @bot.message_handler(commands=['start'])
