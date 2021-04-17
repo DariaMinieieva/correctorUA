@@ -4,9 +4,9 @@ directly with a telegram bot
 """
 
 import telebot
-from main_logic import check_for_mistake, check_conjunctions, correct_msg, check_lang, main_check
+from main_logic import check_for_mistake, check_conjunctions, correct_msg, main_check
 
-bot = telebot.TeleBot('token')
+bot = telebot.TeleBot('1747508782:AAEtD-HE__4QsDPKDHZuKW207TKZ7gZvkYU')
 
 
 @bot.message_handler(commands=['start'])
@@ -27,7 +27,6 @@ def handle_all_message(message):
     correct = check_for_mistake(mess)
     correctes_sentence = correct_msg(mess)
     errors = check_conjunctions(correctes_sentence)
-    translations = check_lang(correctes_sentence)
     hyphen = main_check(correctes_sentence)
 
     if correct:
@@ -36,10 +35,6 @@ def handle_all_message(message):
 
     if errors:
         for i in errors:
-            bot.reply_to(message, i)
-
-    if translations:
-        for i in translations:
             bot.reply_to(message, i)
 
     if hyphen:
@@ -51,11 +46,10 @@ def special_word(message, text):
     '''
     Special cases
     '''
-    if "україн" in text:
-        if "українізатор" in text:
-            bot.reply_to(message, "Це я!")
-        else:
-            bot.reply_to(message, "Україна - лише з великої.")
+    if "українізатор" in text:
+        bot.reply_to(message, "Це я!")
+    if "україна" in text:
+        bot.reply_to(message, "Україна - лише з великої.")
 
     if ("Тернопіль" in text) or ("тернопіль" in text):
         bot.reply_to(message, "Файне місто")

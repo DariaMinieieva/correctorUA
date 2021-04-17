@@ -4,7 +4,6 @@ for correctua bot
 """
 
 import re
-from textblob import TextBlob
 
 
 def get_dictionary(path):
@@ -47,7 +46,7 @@ def check_conjunctions(sentence: str) -> list or None:
     for word in conjunctions:
         pattern = rf'^.*[^,] {word}(([^\w].*)|$)'
         if re.fullmatch(pattern, sentence):
-            errors.append(f'Перед "{word}" повинна стояти кома.')
+            errors.append(f'️❗ Перед "{word}" повинна стояти кома.')
     if errors:
         return errors
     return None
@@ -63,50 +62,14 @@ def check_for_mistake(messages):
 
     messages = messages.lower()
     for key in data:
-        if key in messages:
+        if (key in messages):
             res.append(f"❌ {key}\n✔️ {data[key]}")
 
     return res
 
 
-def check_lang(message):
-    '''
-    Check if the language is not russian
-    '''
-    message_parts = message.split()
-    res = []
-
-    for word in message_parts:
-        blob = TextBlob(word)
-
-        if word.lower() == "нет":
-            res.append(
-                f'"{word}" українською - це "ні"')
-
-        elif word.lower() == "да":
-            res.append(
-                f'"{word}" українською - це "так"')
-        elif word.lower() == "люблю":
-            pass
-        else:
-            try:
-                checker = blob.translate(to='uk', from_lang="ru")
-                word = word.strip("#$: %^&*.()")
-                checker = checker.strip("#$ .:%^&*()")
-
-                if checker.lower() != word.lower():
-                    if word == word.lower():
-                        checker = checker.lower()
-                    res.append(
-                        f'"{word}" українською - це "{checker}"')
-            except:
-                pass
-
-    return res
-
-
 def write_together(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes 
+    """Returns the list of error messages if there are the mistakes
     with words that need to be written together."""
     sentence = sentence.lower()
     errors = []
@@ -120,14 +83,14 @@ def write_together(sentence: str) -> list or None:
     for prefix in together_prefixes:
         pattern = rf'^(.* )*{prefix}[^\w].*'
         if re.fullmatch(pattern, sentence):
-            errors.append(f'Слова з префіксом "{prefix}" пишуться разом.')
+            errors.append(f'❗️ Слова з префіксом "{prefix}" пишуться разом.')
     if errors:
         return errors
     return None
 
 
 def write_with_hyphen(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes 
+    """Returns the list of error messages if there are the mistakes
     with words that need to be written with a hyphen."""
     sentence = sentence.lower()
     errors = []
@@ -137,11 +100,12 @@ def write_with_hyphen(sentence: str) -> list or None:
         prefix_pattern = rf'^(.* )*{prefix}[^-].*'
         if re.fullmatch(prefix_pattern, sentence):
             errors.append(
-                f'Слова з префіксом "{prefix}" пишуться через дефіс.')
+                f'❗️ Слова з префіксом "{prefix}" пишуться через дефіс.')
     for sufix in hyphen_sufixes:
         sufix_pattern = rf'.*[^-]{sufix}( .*)?'
         if re.fullmatch(sufix_pattern, sentence):
-            errors.append(f'Слова з суфіксом "{sufix}" пишуться через дефіс.')
+            errors.append(
+                f'❗️ Слова з суфіксом "{sufix}" пишуться через дефіс.')
     if errors:
         return errors
     return None
