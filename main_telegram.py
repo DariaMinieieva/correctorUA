@@ -2,7 +2,6 @@
 This module contains functions that work
 directly with a telegram bot
 """
-from token import token
 import telebot
 from main_logic import check_for_mistake, check_conjunctions, correct_msg
 from together_hyphen import main_check
