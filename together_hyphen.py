@@ -4,9 +4,12 @@ import re
 
 
 def write_together(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes
-    with words that need to be written together."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written together.
+    """
     errors = {}
+    list_strings = []
     together_prefixes = {'абро', 'авіа', 'авто', 'агро', 'аеро', 'аква', 'алко', 'анти',
                          'арт', 'астро', 'аудіо', 'біо', 'боди', 'веб', 'віце', 'геліо', 'гео', 'гідро', 'гіпер',
                          'дендро', 'екзо', 'еко', 'економ', 'екс', 'етно', 'євро', 'зоо', 'ізо', 'кібер', 'контр',
@@ -22,12 +25,18 @@ def write_together(sentence: str) -> list:
             pattern += re.findall(rf'(?<=[^\w-]){prefix}[-\s][\w]*$', sentence)
             for key in pattern:
                 errors[key] = re.sub(rf'{prefix}.', prefix, key)
-    return errors
+    for key in errors:
+        string = f'❗️ Слова з префіксом {errors[key]} пишуться разом.'
+        list_strings.append(string)
+    return list_strings
 
 
 def specific_hyphen(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes
-    with words that need to be written with a hyphen due to specific rule."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen due to specific rule.
+    """
+    list_strings = []
     errors = {}
     prefix = "по"
     sufixes = "ому"
@@ -40,12 +49,18 @@ def specific_hyphen(sentence: str) -> list:
             rf'(?<=[^\w-]){prefix}[^-][\w]*{sufixes}$', sentence)
         for key in pattern:
             errors[key] = re.sub(r'по\s?', 'по-', key)
-    return errors
+    for key in errors:
+        string = f'❗️ Слова з префіксом {errors[key]} пишуться через дефіс.'
+        list_strings.append(string)
+    return list_strings
 
 
 def write_with_hyphen(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes
-    with words that need to be written with a hyphen."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen.
+    """
+    list_strings = []
     errors = {}
     hyphen_prefixes = {'альфа', 'бета', 'гамма',
                        'дельта', 'казна', 'хтозна', 'бозна'}
@@ -67,18 +82,20 @@ def write_with_hyphen(sentence: str) -> list:
             pattern += re.findall(rf'(?<=[^\w-])\w*[^-]{sufix}$', sentence)
             for key in pattern:
                 errors[key] = re.sub(rf'\s?{sufix}', rf'-{sufix}', key)
-    return errors
+    for key in errors:
+        string = f'❗️ Слова з префіксом {errors[key]} пишуться через дефіс.'
+        list_strings.append(string)
+    return list_strings
 
 
 def main_check(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes
-    with words that need to be written with a hyphen or together."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen or together.
+    """
     sentence = sentence.lower()
     together_errors = write_together(sentence)
     hyphen_errors = write_with_hyphen(sentence)
     specific_hyphen_errors = specific_hyphen(sentence)
-    errors = {}
-    errors.update(together_errors)
-    errors.update(hyphen_errors)
-    errors.update(specific_hyphen_errors)
-    return errors if errors else None
+    list_of_errors = together_errors + hyphen_errors + specific_hyphen_errors
+    return list_of_errors if list_of_errors else None
