@@ -2,17 +2,25 @@
 
 import re
 
+
 def write_together(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes 
-    with words that need to be written together."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written together.
+    """
     errors = []
-    together_prefixes = {'абро', 'авіа', 'авто', 'агро', 'аеро', 'аква', 'алко', 'анти', \
-    'арт', 'астро', 'аудіо', 'біо', 'боди', 'веб', 'віце', 'геліо', 'гео', 'гідро', 'гіпер', \
-    'дендро', 'екзо', 'еко', 'економ', 'екс', 'етно', 'євро', 'зоо', 'ізо', 'кібер', 'контр', \
-    'мета', 'метео', 'моно', 'мото', 'нарко', 'нео', 'онко', 'палео', 'пан', 'пара', 'поп', \
-    'прес', 'псевдо', 'соціо', 'теле', 'фіто', 'фолк', 'фольк', 'фоно', 'архі', 'архи', 'бліц', \
-    'гіпер', 'екстра', 'макро', 'максі', 'міді', 'мікро', 'міні', 'мульти', 'нано', 'полі', \
-    'преміум', 'супер', 'топ', 'ультра', 'флеш', 'напів', 'аби', 'ані', 'де'}
+    together_prefixes = {'абро', 'авіа', 'авто', 'агро', 'аеро', 'аква', 'алко', 'анти',
+                         'арт', 'астро', 'аудіо', 'біо', 'боди', 'веб', 'віце',
+                         'геліо', 'гео', 'гідро', 'гіпер',
+                         'дендро', 'екзо', 'еко', 'економ', 'екс', 'етно', 'євро',
+                         'зоо', 'ізо', 'кібер', 'контр',
+                         'мета', 'метео', 'моно', 'мото', 'нарко', 'нео', 'онко',
+                         'палео', 'пан', 'пара', 'поп',
+                         'прес', 'псевдо', 'соціо', 'теле', 'фіто', 'фолк', 'фольк',
+                         'фоно', 'архі', 'архи', 'бліц',
+                         'гіпер', 'екстра', 'макро', 'максі', 'міді', 'мікро',
+                         'міні', 'мульти', 'нано', 'полі',
+                         'преміум', 'супер', 'топ', 'ультра', 'флеш', 'напів', 'аби', 'ані', 'де'}
     for prefix in together_prefixes:
         pattern = rf'^(.* )*{prefix}[^\w].*'
         if re.fullmatch(pattern, sentence):
@@ -21,8 +29,10 @@ def write_together(sentence: str) -> list:
 
 
 def specific_hyphen(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes 
-    with words that need to be written with a hyphen due to specific rule."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen due to specific rule.
+    """
     errors = []
     prefix = "по"
     sufixes = ("ому", "и")
@@ -34,8 +44,10 @@ def specific_hyphen(sentence: str) -> list:
 
 
 def write_with_hyphen(sentence: str) -> list:
-    """Returns the list of error messages if there are the mistakes 
-    with words that need to be written with a hyphen."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen.
+    """
     errors = []
     hyphen_prefixes = {'альфа', 'бета', 'гамма', 'дельта', 'казна', 'хтозна', 'бозна'}
     hyphen_sufixes = {'таки', 'небудь'}
@@ -51,8 +63,10 @@ def write_with_hyphen(sentence: str) -> list:
 
 
 def main_check(sentence: str) -> list or None:
-    """Returns the list of error messages if there are the mistakes 
-    with words that need to be written with a hyphen or together."""
+    """
+    Returns the list of error messages if there are the mistakes
+    with words that need to be written with a hyphen or together.
+    """
     sentence = sentence.lower()
     together_errors = write_together(sentence)
     hyphen_errors = write_with_hyphen(sentence)
