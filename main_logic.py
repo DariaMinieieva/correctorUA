@@ -54,18 +54,31 @@ def check_conjunctions(sentence: str) -> list or None:
     return None
 
 
+# def check_for_mistake(messages):
+#     """
+#     Returns mistakes with corrections
+#     """
+#     res = []
+#     path = "correctorUA/lexic_mistakes.csv"
+#     data = get_dictionary(path)
+
+#     messages = messages.lower()
+#     for key in data:
+#         pattern = rf'[^а-яА-Я]{key}[^а-яА-Я]'
+#         if re.findall(pattern, messages):
+#             res.append(f"❌ {key}\n✔️ {data[key]}")
+
+#     return res
+
 def check_for_mistake(messages):
-    """
+    '''
     Returns mistakes with corrections
-    """
+    '''
     res = []
     path = "correctorUA/lexic_mistakes.csv"
     data = get_dictionary(path)
-
     messages = messages.lower()
     for key in data:
-        pattern = rf'[^а-яА-Я]{key}[^а-яА-Я]'
-        if re.findall(pattern, messages):
+        if (key in messages):
             res.append(f"❌ {key}\n✔️ {data[key]}")
-
     return res
