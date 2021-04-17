@@ -60,8 +60,5 @@ def special_word(message, text):
     if ("важко" in text) or ("тяжко" in text):
         bot.reply_to(message, "нічого, буде ще важче.")
 
-    if "БА" in text:
-        bot.reply_to(message, "ні, КН")
-
 
 bot.polling()
