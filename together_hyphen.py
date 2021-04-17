@@ -37,7 +37,7 @@ def write_with_hyphen(sentence: str) -> list:
     """Returns the list of error messages if there are the mistakes 
     with words that need to be written with a hyphen."""
     errors = []
-    hyphen_prefixes = {'альфа', 'бета', 'дельта', 'казна', 'хтозна', 'бозна'}
+    hyphen_prefixes = {'альфа', 'бета', 'гамма', 'дельта', 'казна', 'хтозна', 'бозна'}
     hyphen_sufixes = {'таки', 'небудь'}
     for prefix in hyphen_prefixes:
         prefix_pattern = rf'^(.* )*{prefix}[^-].*'
