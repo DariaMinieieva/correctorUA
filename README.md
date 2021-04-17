@@ -1,7 +1,5 @@
-# CorrectorUA
+# CorrectorUA (@ukr_rules_bot in Telegram)
 ![photo_2021-04-17_08-54-39](https://user-images.githubusercontent.com/44781809/115103489-e9019480-9f5a-11eb-924b-a6616eec7499.jpg)
-
-# Telegram Bot @ukr_rules_bot
 
 ## Description
 CorrectorUA is the telegram bot that can help you learn the rules of the Ukrainian language during communication in telegram correspondence. 
