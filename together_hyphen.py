@@ -2,10 +2,9 @@
 
 import re
 
-def write_together(sentence: str) -> list or None:
+def write_together(sentence: str) -> list:
     """Returns the list of error messages if there are the mistakes 
     with words that need to be written together."""
-    sentence = sentence.lower()
     errors = []
     together_prefixes = {'абро', 'авіа', 'авто', 'агро', 'аеро', 'аква', 'алко', 'анти', \
     'арт', 'астро', 'аудіо', 'біо', 'боди', 'веб', 'віце', 'геліо', 'гео', 'гідро', 'гіпер', \
@@ -18,15 +17,25 @@ def write_together(sentence: str) -> list or None:
         pattern = rf'^(.* )*{prefix}[^\w].*'
         if re.fullmatch(pattern, sentence):
             errors.append(f'Слова з префіксом "{prefix}" пишуться разом.')
-    if errors:
-        return errors
-    return None
+    return errors
 
 
-def write_with_hyphen(sentence: str) -> list or None:
+def specific_hyphen(sentence: str) -> list:
+    """Returns the list of error messages if there are the mistakes 
+    with words that need to be written with a hyphen due to specific rule."""
+    errors = []
+    prefix = "по"
+    sufixes = ("ому", "и")
+    pattern = rf'(.* )*{prefix}[^-]([^ ]+)?({sufixes[0]}|{sufixes[1]}).*'
+    if re.fullmatch(pattern, sentence):
+        errors.append(f'Слова з префіксом "{prefix}" й суфіксами "{sufixes[0]}" та \
+"{sufixes[1]}" пишуться через дефіс.')
+    return errors
+
+
+def write_with_hyphen(sentence: str) -> list:
     """Returns the list of error messages if there are the mistakes 
     with words that need to be written with a hyphen."""
-    sentence = sentence.lower()
     errors = []
     hyphen_prefixes = {'альфа', 'бета', 'дельта', 'казна', 'хтозна', 'бозна'}
     hyphen_sufixes = {'таки', 'небудь'}
@@ -38,20 +47,15 @@ def write_with_hyphen(sentence: str) -> list or None:
         sufix_pattern = rf'.*[^-]{sufix}( .*)?'
         if re.fullmatch(sufix_pattern, sentence):
             errors.append(f'Слова з суфіксом "{sufix}" пишуться через дефіс.')
-    if errors:
-        return errors
-    return None
+    return errors
 
 
 def main_check(sentence: str) -> list or None:
     """Returns the list of error messages if there are the mistakes 
     with words that need to be written with a hyphen or together."""
+    sentence = sentence.lower()
     together_errors = write_together(sentence)
     hyphen_errors = write_with_hyphen(sentence)
-    if together_errors and hyphen_errors:
-        errors = together_errors + hyphen_errors
-    elif together_errors:
-        errors = together_errors
-    else:
-        errors = hyphen_errors
-    return errors
+    specific_hyphen_errors = specific_hyphen(sentence)
+    errors = together_errors + hyphen_errors + specific_hyphen_errors
+    return errors if errors else None
