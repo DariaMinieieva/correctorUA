@@ -27,7 +27,7 @@ def write_together(sentence: str) -> list:
             for key in pattern:
                 errors[key] = re.sub(rf'{prefix}.', prefix, key)
     for key in errors:
-        string = f'❗️ Слова з префіксом {errors[key]} пишуться разом.'
+        string = f'❌ {key} \n ✔️ {errors[key]}'
         list_strings.append(string)
     return list_strings
 
@@ -52,7 +52,7 @@ def specific_hyphen(sentence: str) -> list:
         for key in pattern:
             errors[key] = re.sub(r'по\s?', 'по-', key)
     for key in errors:
-        string = f'❗️ Слова з префіксом {errors[key]} пишуться через дефіс.'
+        string = f'❌ {key} \n ✔️ {errors[key]}'
         list_strings.append(string)
     return list_strings
 
@@ -87,7 +87,7 @@ def write_with_hyphen(sentence: str) -> list:
             for key in pattern:
                 errors[key] = re.sub(rf'\s?{sufix}', rf'-{sufix}', key)
     for key in errors:
-        string = f'❗️ Слова з префіксом {errors[key]} пишуться через дефіс.'
+        string = f'❌ {key} \n ✔️ {errors[key]}'
         list_strings.append(string)
     return list_strings
 
