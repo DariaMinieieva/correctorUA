@@ -50,7 +50,12 @@ def specific_hyphen(sentence: str) -> list:
             rf'(?<=[^\w-]){prefix}[^-][\w]*{sufixes}$', sentence)
         pattern += re.findall(rf'^{prefix}[^-][\w]*{sufixes}$', sentence)
         for key in pattern:
-            errors[key] = re.sub(r'по\s?', 'по-', key)
+            if re.fullmatch(r'по [чт]ому', key):
+                pass
+            elif re.fullmatch(r'по[чт]ому', key):
+                errors[key] = re.sub(r'по', 'по ', key)
+            else:
+                errors[key] = re.sub(r'по\s?', 'по-', key)
     for key in errors:
         string = f'❌ {key} \n ✔️ {errors[key]}'
         list_strings.append(string)
@@ -103,3 +108,4 @@ def main_check(sentence: str) -> list or None:
     specific_hyphen_errors = specific_hyphen(sentence)
     list_of_errors = together_errors + hyphen_errors + specific_hyphen_errors
     return list_of_errors if list_of_errors else None
+print(main_check('почому по чому'))
