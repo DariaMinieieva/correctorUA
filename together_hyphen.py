@@ -108,4 +108,3 @@ def main_check(sentence: str) -> list or None:
     specific_hyphen_errors = specific_hyphen(sentence)
     list_of_errors = together_errors + hyphen_errors + specific_hyphen_errors
     return list_of_errors if list_of_errors else None
-print(main_check('почому по чому'))
