@@ -26,7 +26,9 @@ def correct_msg(messages):
     data = get_dictionary(path)
     corrected = messages
     for key in data:
-        if key in corrected:
+        pattern = rf'[^а-яА-Яіїє]{key}[^а-яА-Яіїє]|[^а-яА-Яіїє]{key}$|^{key}[^а-яА-Яіїє]|^{key}$'
+
+        if re.findall(pattern, corrected):
             ind_b = corrected.index(key)
             ind_e = ind_b + len(key)
             temp = corrected[:ind_b]
@@ -64,7 +66,7 @@ def check_for_mistake(messages):
 
     messages = messages.lower()
     for key in data:
-        pattern = rf'[^а-яА-Я]{key}[^а-яА-Я]|[^а-яА-Я]{key}$|^{key}[^а-яА-Я]|^{key}$'
+        pattern = rf'[^а-яА-Яіїє]{key}[^а-яА-Яіїє]|[^а-яА-Яіїє]{key}$|^{key}[^а-яА-Яіїє]|^{key}$'
         if re.findall(pattern, messages):
             res.append(f"❌ {key}\n✔️ {data[key]}")
 
