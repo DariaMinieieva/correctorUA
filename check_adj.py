@@ -16,7 +16,7 @@ def check_adj(message: str) -> list:
     >>> check_adj('сама краща', 'самі веселі')
     ['❌ сама краща\n✔️ потрібно використовувати префікс най-', '❌ самі веселі\n✔️ потрібно використовувати префікс най-']
     >>> check_adj('саме довге')
-    ['❌ самий довге\n✔️ потрібно використовувати префікс най-']
+    ['❌ саме довге\n✔️ потрібно використовувати префікс най-']
     """
     result = []
     sentence = message.lower().replace(',', '').split(' ')
@@ -32,5 +32,5 @@ def check_adj(message: str) -> list:
             check = morph.parse(check_word)[0]
             if check.tag.POS in {'ADJF', 'ADJS', 'COMP', 'PRTS', 'PRTN', 'ADVB'}:
                 result.append(
-                    f"❌ самий {check_word}\n✔️ потрібно використовувати префікс най-")
+                    f"❌ саме {check_word}\n✔️ потрібно використовувати префікс най-")
     return result if result else None
