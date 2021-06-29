@@ -23,7 +23,7 @@ CorretorUA corrects the following types of mistake
 * https://zno.if.ua/?p=3398
 * https://znoclub.com/pidgotovka-do-zno/1202-top-10-leksichnikh-pomilok-ukrajinskoji-movi.html
 
-## Example of using
+## Example of usage
 <img width="426" alt="2021-04-17" src="https://user-images.githubusercontent.com/50978411/115115259-191d5780-9f9c-11eb-951f-1c3882855e91.png">
 
 ## Authors
